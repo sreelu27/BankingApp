@@ -75,10 +75,7 @@ public class AccountServiceImpl implements AccountService {
         List<Account> accountList = accountRepository.findAll();
         List<AccountDto> accountDtoList = new ArrayList<>();
         for (Account acc : accountList) {
-            AccountDto accountDto = new AccountDto();
-            accountDto.setId(acc.getId());
-            accountDto.setAccountHolderName(acc.getAccountHolderName());
-            accountDto.setBalance(acc.getBalance());
+            AccountDto accountDto = new AccountDto(acc.getId(),acc.getAccountHolderName(),acc.getBalance());
             accountDtoList.add(accountDto);
         }
         return accountDtoList;
