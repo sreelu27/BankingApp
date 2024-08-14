@@ -1,6 +1,8 @@
 package com.sree.banking.service;
 
 import com.sree.banking.dto.AccountDto;
+import com.sree.banking.dto.TransactionDto;
+import com.sree.banking.dto.TransferFundDto;
 
 import java.util.List;
 
@@ -17,4 +19,8 @@ public interface AccountService {
     List<AccountDto> getAccounts();
 
     void deleteAccount(Long id);
+
+    void transferFunds(TransferFundDto transferFundDto);
+
+    List<TransactionDto> getAccountTransactions(Long accountId);
 }

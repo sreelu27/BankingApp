@@ -1,6 +1,8 @@
 package com.sree.banking.controller;
 
 import com.sree.banking.dto.AccountDto;
+import com.sree.banking.dto.TransactionDto;
+import com.sree.banking.dto.TransferFundDto;
 import com.sree.banking.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,4 +62,18 @@ public class AccountController {
         accountService.deleteAccount(id);
         return new ResponseEntity<String>("Account Deleted", HttpStatus.OK);
     }
+
+    @PostMapping("/transfer")
+    public ResponseEntity<String> transferFund(@RequestBody TransferFundDto transferFundDto){
+        accountService.transferFunds(transferFundDto);
+        return new ResponseEntity<String>("Transfer Successfully completed", HttpStatus.OK);
+    }
+
+    @GetMapping("{id}/transactions")
+    public ResponseEntity<List<TransactionDto>> fetchAccountTransactions(@PathVariable("id") Long accountId){
+        List<TransactionDto> transactions = accountService.getAccountTransactions(accountId);
+        return ResponseEntity.ok(transactions);
+    }
+
+
 }
